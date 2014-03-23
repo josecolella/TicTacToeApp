@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSArray * rowVictoryMoves;
 @property (strong, nonatomic) NSArray * columnVictoryMoves;
 @property (strong, nonatomic) NSArray * diagonalVictoryMoves;
+@property (nonatomic) NSInteger cancelButtonIndex;
 
 @property (strong, nonatomic) NSMutableArray * xMovesArray;
 @property (strong, nonatomic) NSMutableArray * oMovesArray;

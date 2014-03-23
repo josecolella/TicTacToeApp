@@ -35,6 +35,7 @@
     
     self.xMovesArray = [NSMutableArray array];
     self.oMovesArray = [NSMutableArray array];
+    
     [super viewDidLoad];
     
 }
@@ -46,7 +47,8 @@
 }
 
 /**
- *
+ *  This method changed the state of the current game
+ * denoting which player goes next.
  */
 - (void)changeState {
     if ([self.state isEqualToString:@"X"]) {
@@ -69,6 +71,8 @@
  */
 - (void) startNewGame:(NSString *)winner {
     
+    [self showVictoryAlertView:winner];
+    
     self.firstCell.image = nil;
     self.secondCell.image = nil;
     self.thirdCell.image = nil;
@@ -79,9 +83,8 @@
     self.eightCell.image = nil;
     self.ninthCell.image = nil;
     
-    [self showVictoryAlertView:winner];
-    [self viewDidLoad];
     
+    [self viewDidLoad];
 }
 
 /**
@@ -89,8 +92,8 @@
  * in the array of moves made by the player. The conditions
  * for victory are to check diagonal, vertical, and horizontal moves
  *
- * \param playerArray The array of player moves
- * \returns A boolean that determines if all the victory conditions are verified.
+ * @param playerArray The array of player moves
+ * @returns A boolean that determines if all the victory conditions are verified.
  */
 - (BOOL) checkConditionArray:(NSArray *)conditionArray forArray:(NSArray *)playerArray; {
     
@@ -173,8 +176,11 @@
         title = @"Congratulations";
         message = [NSString stringWithFormat:@"%@ %@", winner, @"player has won..."];
     }
-    UIAlertView * winnerAlertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Play Again" otherButtonTitles: nil];
+    
+    UIAlertView * winnerAlertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Play Again" otherButtonTitles: nil];
     [winnerAlertView show];
+    
+
 }
 
 
